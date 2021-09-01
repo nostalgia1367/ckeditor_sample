@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 시스템 콘솔에 로그를 표시 -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d %-5p [%t] %-17c{2} (%13F:%L) %3x - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 지정된 경로의 파일에 일별로 로그를 표시 -->
+	<appender name="rolling" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="append" value="true" />
+
+		<!-- 파일 경로 -->
+		<param name="file" value="D:\\logs\\sample_log.log" />
+		<!-- 파일 뒤에 붙을 날짜 형식 -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.txt'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d %-5p [%t] %-17c{2} (%13F:%L) %3x - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 지정된 경로의 파일에 일별로 로그를 표시 -->
+	<appender name="rollingLoggingInterceptor" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="append" value="true" />
+
+		<!-- 파일 경로 -->
+		<param name="file" value="D:\\logs\\sample.log" />
+		<!-- 파일 뒤에 붙을 날짜 형식 -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{yyyy-MM-dd HH:mm:ss}] - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- 패키지 단위로 로깅 레벨을 설정 -->
+	
+	<!-- 아파치 오픈 소스 프로젝트 기본 패키지 로깅 레벨 -->
+	<logger name="org.apache">
+		<level value="WARN" />
+	</logger>
+
+	<!-- ibatis 기본 패키지 로깅 레벨 -->
+	<logger name="com.ibatis">
+		<level value="DEBUG" />
+	</logger>
+
+	<!-- ibatis DB 연결 정보 로깅 레벨 -->
+	<logger name="java.sql.Connection">
+		<level value="DEBUG" />
+	</logger>
+
+	<!-- ibatis DB 쿼리 정보 로깅 레벨 -->
+	<logger name="java.sql.Statement">
+		<level value="DEBUG" />
+	</logger>
+
+	<!-- ibatis DB 쿼리 정보 로깅 레벨 -->
+	<logger name="java.sql.PreparedStatement">
+		<level value="DEBUG" />
+	</logger>
+
+	<!-- ibatis DB 쿼리 결과 로깅 레벨 -->
+	<logger name="java.sql.ResultSet">
+		<level value="WARN" />
+	</logger>
+
+	<!-- 스프링 프레임워크 기본 로깅 레벨 -->
+	<logger name="org.springframework">
+		<level value="WARN" />
+	</logger>
+	
+	<!-- 컨트롤러 로깅 설정 -->
+	<logger name="com.jobtoy.commons.logging.ControllerLoggingInterceptor">
+		<level value="DEBUG" />
+		<appender-ref ref="rollingLoggingInterceptor" />
+	</logger>
+
+	<!-- 전체 기본 로깅 설정 -->
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="console" />
+	</root>
+	
+</log4j:configuration>
