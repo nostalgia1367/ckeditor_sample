@@ -8,10 +8,10 @@ target/
 
 ### STS ###
 .apt_generated
-.classpath
+#.classpath
 .factorypath
-.project
-.settings
+#.project
+#.settings
 .springBeans
 
 ### IntelliJ IDEA ###
@@ -38,7 +38,7 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.settings/
+#.settings/
 .loadpath
 .recommenders
 
@@ -124,11 +124,11 @@ local.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.nar
 *.ear
-*.zip
+#*.zip
 *.tar.gz
 *.rar
 
